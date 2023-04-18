@@ -593,7 +593,7 @@ table{
         <div class="details">
           <h4>Name : ${user.firstName} ${user.lastName}</h4>
           </br><h4>Phone : ${user.phone}</h4>
-          </br><h4>Number: ${user.email}</h4>
+          </br><h4>e-mail: ${user.email}</h4>
           </br><h4>Company name : ${user.companyName}</h4>
           </br><h4>Products : ${user.Products}</h4>
         </div>

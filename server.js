@@ -46,7 +46,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const port = process.env.PORT || 5001;
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(xss());
 app.use(mongoSanitize());
@@ -54,6 +58,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public/")));
 app.use(logger);
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
 
 
 const connectDB = (url) => {
@@ -165,7 +176,10 @@ app.get("/fetch-pdf", async (req, res) => {
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("DB connection established");
     
     app.listen(port, () =>
