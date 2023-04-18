@@ -8,7 +8,7 @@ const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
 const pdf = require("html-pdf");
-const cors = require("cors");
+// const cors = require("cors");
 const fs = require("fs");
 const mongoose =  require('mongoose');
 const dotenv = require('dotenv')
@@ -51,7 +51,7 @@ app.use(express.json());
 //   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 //   allowedHeaders: ['Content-Type', 'Authorization']
 // }));
-app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
+// app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(xss());
 app.use(mongoSanitize());
 app.use(bodyParser.json());
@@ -61,16 +61,16 @@ app.use(logger);
 
 
 // Allow cross-origin requests from all domains
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//   // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, application/json');
-//   if (req.method === 'OPTIONS') {
-//     res.sendStatus(200);
-//   } else {
-//     next();
-//   }
-// });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, application/json');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
 const connectDB = (url) => {
   return mongoose.connect(url);
