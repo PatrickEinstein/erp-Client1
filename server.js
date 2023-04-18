@@ -46,7 +46,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const port = process.env.PORT || 5001;
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
