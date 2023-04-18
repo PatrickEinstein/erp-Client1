@@ -51,7 +51,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-// app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
+app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(xss());
 app.use(mongoSanitize());
 app.use(bodyParser.json());
