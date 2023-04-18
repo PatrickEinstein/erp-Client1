@@ -46,7 +46,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const port = process.env.PORT || 5001;
 app.use(express.json());
-// app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 // app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(xss());
 app.use(mongoSanitize());
@@ -60,7 +64,7 @@ app.use(logger);
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, application/json');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, application/json');
   if (req.method === 'OPTIONS') {
     res.sendStatus(200);
   } else {
