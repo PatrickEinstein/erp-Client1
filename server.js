@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const StatusCodes = require("http-status-codes");
 const morgan = require("morgan");
-const helmet = require("helmet");
+// const helmet = require("helmet");
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
@@ -24,6 +24,20 @@ dotenv.config();
 const app = express();
 
 mongoose.set("strictQuery", true);
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
+  // res.send('This is an example resource.');
+  next();
+});
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
@@ -53,24 +67,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public/")));
 app.use(logger);
 app.use(express.json());
-//Added settings
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+// app.use(helmet());
+// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 // app.use(cors());
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  );
-  next();
-});
 
 const connectDB = (url) => {
   return mongoose.connect(url);
