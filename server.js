@@ -80,6 +80,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create-pdf", async (req, res) => {
+
+  res.header('Access-Control-Allow-Origin', '*');
+
+
   const { data } = req.body;
   console.log(data);
   const html = pdfTemplate(data);
