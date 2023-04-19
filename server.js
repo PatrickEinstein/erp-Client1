@@ -59,16 +59,17 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 // app.use(cors());
 
-// Allow cross-origin requests from all domains
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
+  next();
 });
 
 const connectDB = (url) => {
@@ -80,10 +81,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create-pdf", async (req, res) => {
-
-  res.header('Access-Control-Allow-Origin', '*');
-
-
   const { data } = req.body;
   console.log(data);
   const html = pdfTemplate(data);
