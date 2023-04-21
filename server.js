@@ -8,13 +8,13 @@ const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
 const pdf = require("html-pdf");
-// const cors = require("cors");
+const cors = require("cors");
 const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const StatusCodes = require("http-status-codes");
 const morgan = require("morgan");
-// const helmet = require("helmet");
+const helmet = require("helmet");
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
@@ -25,19 +25,7 @@ const app = express();
 
 mongoose.set("strictQuery", true);
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  );
-  // res.send('This is an example resource.');
-  next();
-});
+app.use(cors({origin:"http://localhost:3000"}))
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
