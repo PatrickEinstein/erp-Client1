@@ -25,7 +25,10 @@ const app = express();
 
 mongoose.set("strictQuery", true);
 
-app.use(cors({origin:"http://localhost:3000"}))
+app.use(cors({
+  origin:["http://localhost:3000","https://nodejs-production-f19e.up.railway.app"],
+  credentials:true
+}))
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
@@ -70,8 +73,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create-pdf", async (req, res) => {
-  const { data } = req.body;
-  console.log(data);
+  const {data} = req.body;
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
@@ -89,7 +91,6 @@ app.post("/create-pdf", async (req, res) => {
         try {
           const mail = [
             "tundeytoby@gmail.com",
-            "octavedev01@gmail.com",
             "patoctave99@gmail.com",
             data.user.email,
           ];
@@ -117,13 +118,13 @@ app.post("/create-pdf", async (req, res) => {
             message: "Failed to send mail",
           });
         }
-      }, 6000)
+      }, 5000)
     );
   };
 
   await dataHandler();
 
-  pdfBuffer = fs.readFileSync("index.pdf");
+  const pdfBuffer = fs.readFileSync("index.pdf");
 
   const { firstName, lastName, email, phone, companyName, Products } =
     data.user;
@@ -134,10 +135,10 @@ app.post("/create-pdf", async (req, res) => {
     });
   }
 
-  const userAlreadyExists = await User.findOne({ email });
-  if (userAlreadyExists) {
-    throw new BadRequestError("Email already in use");
-  }
+  // const userAlreadyExists = await User.findOne({ email });
+  // if (userAlreadyExists) {
+  //   throw new BadRequestError("Email already in use");
+  // }
 
   const user = await User.create({
     firstName,
