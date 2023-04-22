@@ -26,7 +26,7 @@ const app = express();
 mongoose.set("strictQuery", true);
 
 app.use(cors({
-  origin:["http://localhost:3000","https://nodejs-production-f19e.up.railway.app"],
+  origin:"http://localhost:3000",
   credentials:true
 }))
 
