@@ -148,7 +148,6 @@ app.post("/create-pdf", async (req, res) => {
     companyName,
     Products,
   });
-  console.log(user);
   user.pdf = pdfBuffer;
 
   await user.save();
