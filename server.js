@@ -25,10 +25,7 @@ const app = express();
 
 mongoose.set("strictQuery", true);
 
-app.use(cors({
-  origin:["http://localhost:3000","https://nodejs-production-f19e.up.railway.app"],
-  credentials:true
-}))
+
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
@@ -58,10 +55,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public/")));
 app.use(logger);
 app.use(express.json());
-// app.use(helmet());
-// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(helmet());
 app.use(morgan("common"));
-// app.use(cors());
+
+// app.use(cors({
+//   origin:"http://localhost:3000",
+//   credentials:true
+// }))
+
+const whitelist = ["http://localhost:3000"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
+app.use(cors(corsOptions))
+
 
 
 const connectDB = (url) => {
