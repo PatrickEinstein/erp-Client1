@@ -64,9 +64,9 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-// app.get("/", (req, res) => {
-//   res.send("<h1>Welcome to export readiness</h1>");
-// });
+app.get("/test", (req, res) => {
+  res.send("<h1>Welcome to export readiness</h1>");
+});
 
 app.use(express.static("build"))
 
