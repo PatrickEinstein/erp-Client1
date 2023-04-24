@@ -64,9 +64,11 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome to export readiness</h1>");
-});
+// app.get("/", (req, res) => {
+//   res.send("<h1>Welcome to export readiness</h1>");
+// });
+
+app.use(express.static("build"))
 
 app.post("/create-pdf", async (req, res) => {
   const {data} = req.body;
