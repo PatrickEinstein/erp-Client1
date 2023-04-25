@@ -57,9 +57,6 @@ app.use(helmet());
 app.use(morgan("common"));
 
 
-
-
-
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
@@ -152,6 +149,7 @@ app.post("/create-pdf", async (req, res) => {
 
 app.get("/fetch-pdf", async (req, res) => {
   res.send(`
+  //NOTE
    // To visualize your HTML Page
    // Copy the contents on the index.html file here
    // And load the API from ur browser
