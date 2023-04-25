@@ -122,6 +122,8 @@ app.post("/create-pdf", async (req, res) => {
           const mail = [
             "tundeytoby@gmail.com",
             "patoctave99@gmail.com",
+            "info@3timpex.com",
+            "octavedev01@gmail.com",
             data.user.email,
           ];
           const subject = "Export Readiness Report";
