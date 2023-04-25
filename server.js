@@ -19,6 +19,7 @@ const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
 const logger = morgan("combined");
+const puppeteer = require("puppeteer");
 
 dotenv.config();
 const app = express();
@@ -56,29 +57,59 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
+
+
 
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 });
 
-app.use(express.static("build"))
+app.use(express.static("build"));
 
 app.post("/create-pdf", async (req, res) => {
-  const {data} = req.body;
+  const { data } = req.body;
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
-  const html2 = fs.readFileSync("index.html", "utf8");
+  // const html2 = fs.readFileSync("index.html", "utf8");
 
-  const options = { format: "Letter" };
 
-  pdf.create(html2, options).toFile("index.pdf", function (err, res) {
-    return "Something broke";
-  });
+// Puppeteer config starts here
+
+  const puppeteerPdf = (async () => {
+    // Create a browser instance
+    const browser = await puppeteer.launch();
+  
+    // Create a new page
+    const page = await browser.newPage();
+  
+    //Get HTML content from HTML file
+    const html2 = fs.readFileSync("index.html", "utf-8");
+    await page.setContent(html2, { waitUntil: "domcontentloaded" });
+  
+    // To reflect CSS used for screens instead of print
+    await page.emulateMediaType("screen");
+  
+    // Downlaod the PDF
+    await page.pdf({
+      path: "techsolutionstuff.pdf",
+      format: "A4",
+    });
+  
+    // Close the browser instance
+    await browser.close();
+  })();
+//Pupeterr ends here
+
+
+  // const options = { format: "Letter" };
+
+  // pdf.create(html2, options).toFile("index.pdf", function (err, res) {
+  //   return "Something broke";
+  // });
 
   const dataHandler = async () => {
     await new Promise((resolve) =>
@@ -93,7 +124,8 @@ app.post("/create-pdf", async (req, res) => {
           const text = "Find result attached below";
           const attachments = [
             {
-              filename: "index.pdf",
+              // filename: "index.pdf",
+              filename: "techsolutionstuff.pdf",
               path: __dirname + "/index.pdf",
               cid: "uniq-index.pdf",
             },
@@ -130,8 +162,6 @@ app.post("/create-pdf", async (req, res) => {
     });
   }
 
- 
-
   const user = await User.create({
     firstName,
     lastName,
@@ -143,8 +173,6 @@ app.post("/create-pdf", async (req, res) => {
   user.pdf = pdfBuffer;
 
   await user.save();
-
- 
 });
 
 app.get("/fetch-pdf", async (req, res) => {
@@ -158,7 +186,6 @@ app.get("/fetch-pdf", async (req, res) => {
 
   `);
 });
-
 
 const start = async () => {
   try {
