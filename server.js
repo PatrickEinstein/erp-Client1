@@ -80,7 +80,10 @@ app.post("/create-pdf", async (req, res) => {
 
   const puppeteerPdf = async () => {
     // Create a browser instance
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox'],
+      timeout: 10000,
+    });
   
     // Create a new page
     const page = await browser.newPage();
