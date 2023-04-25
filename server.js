@@ -74,42 +74,42 @@ app.post("/create-pdf", async (req, res) => {
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
-  // const html2 = fs.readFileSync("index.html", "utf8");
+  const html2 = fs.readFileSync("index.html", "utf8");
 
 
 // Puppeteer config starts here
 
-  const puppeteerPdf = (async () => {
-    // Create a browser instance
-    const browser = await puppeteer.launch();
+  // const puppeteerPdf = (async () => {
+  //   // Create a browser instance
+  //   const browser = await puppeteer.launch();
   
-    // Create a new page
-    const page = await browser.newPage();
+  //   // Create a new page
+  //   const page = await browser.newPage();
   
-    //Get HTML content from HTML file
-    const html2 = fs.readFileSync("index.html", "utf-8");
-    await page.setContent(html2, { waitUntil: "domcontentloaded" });
+  //   //Get HTML content from HTML file
+  //   const html2 = fs.readFileSync("index.html", "utf-8");
+  //   await page.setContent(html2, { waitUntil: "domcontentloaded" });
   
-    // To reflect CSS used for screens instead of print
-    await page.emulateMediaType("screen");
+  //   // To reflect CSS used for screens instead of print
+  //   await page.emulateMediaType("screen");
   
-    // Downlaod the PDF
-    await page.pdf({
-      path: "techsolutionstuff.pdf",
-      format: "A4",
-    });
+  //   // Downlaod the PDF
+  //   await page.pdf({
+  //     path: "techsolutionstuff.pdf",
+  //     format: "A4",
+  //   });
   
-    // Close the browser instance
-    await browser.close();
-  })();
+  //   // Close the browser instance
+  //   await browser.close();
+  // })();
 //Pupeterr ends here
 
 
-  // const options = { format: "Letter" };
+  const options = { format: "Letter" };
 
-  // pdf.create(html2, options).toFile("index.pdf", function (err, res) {
-  //   return "Something broke";
-  // });
+  pdf.create(html2, options).toFile("index.pdf", function (err, res) {
+    return "Something broke";
+  });
 
   const dataHandler = async () => {
     await new Promise((resolve) =>
@@ -124,8 +124,8 @@ app.post("/create-pdf", async (req, res) => {
           const text = "Find result attached below";
           const attachments = [
             {
-              // filename: "index.pdf",
-              filename: "techsolutionstuff.pdf",
+              filename: "index.pdf",
+              // filename: "techsolutionstuff.pdf",
               path: __dirname + "/index.pdf",
               cid: "uniq-index.pdf",
             },
