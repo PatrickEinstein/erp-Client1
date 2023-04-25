@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
-const pdf = require("html-pdf");
+// const pdf = require("html-pdf");
 const cors = require("cors");
 const fs = require("fs");
 const mongoose = require("mongoose");
@@ -22,7 +22,7 @@ const logger = morgan("combined");
 const puppeteer = require("puppeteer");
 
 dotenv.config();
-const app = express();
+const app = express()
 
 mongoose.set("strictQuery", true);
 
@@ -65,7 +65,7 @@ const connectDB = (url) => {
 
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
-});
+})
 
 app.use(express.static("build"));
 
@@ -74,42 +74,43 @@ app.post("/create-pdf", async (req, res) => {
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
-  const html2 = fs.readFileSync("index.html", "utf8");
+  // const html2 = fs.readFileSync("index.html", "utf8");
 
 
-// Puppeteer config starts here
 
-  // const puppeteerPdf = (async () => {
-  //   // Create a browser instance
-  //   const browser = await puppeteer.launch();
+  const puppeteerPdf = async () => {
+    // Create a browser instance
+    const browser = await puppeteer.launch();
   
-  //   // Create a new page
-  //   const page = await browser.newPage();
+    // Create a new page
+    const page = await browser.newPage();
   
-  //   //Get HTML content from HTML file
-  //   const html2 = fs.readFileSync("index.html", "utf-8");
-  //   await page.setContent(html2, { waitUntil: "domcontentloaded" });
+    //Get HTML content from HTML file
+    const html2 = fs.readFileSync("index.html", "utf-8");
+    await page.setContent(html2, { waitUntil: "domcontentloaded" });
   
-  //   // To reflect CSS used for screens instead of print
-  //   await page.emulateMediaType("screen");
+    // To reflect CSS used for screens instead of print
+    await page.emulateMediaType("screen");
   
-  //   // Downlaod the PDF
-  //   await page.pdf({
-  //     path: "techsolutionstuff.pdf",
-  //     format: "A4",
-  //   });
+    // Downlaod the PDF
+    await page.pdf({
+      path: "index.pdf",
+      format: "Letter",
+    });
   
-  //   // Close the browser instance
-  //   await browser.close();
-  // })();
-//Pupeterr ends here
+    // Close the browser instance
+    await browser.close();
+  };
+
+  await puppeteerPdf();
 
 
-  const options = { format: "Letter" };
 
-  pdf.create(html2, options).toFile("index.pdf", function (err, res) {
-    return "Something broke";
-  });
+  // const options = { format: "Letter" };
+
+  // pdf.create(html2, options).toFile("index.pdf", function (err, res) {
+  //   return "Something broke";
+  // });
 
   const dataHandler = async () => {
     await new Promise((resolve) =>
