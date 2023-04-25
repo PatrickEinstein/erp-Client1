@@ -133,10 +133,7 @@ app.post("/create-pdf", async (req, res) => {
     });
   }
 
-  // const userAlreadyExists = await User.findOne({ email });
-  // if (userAlreadyExists) {
-  //   throw new BadRequestError("Email already in use");
-  // }
+ 
 
   const user = await User.create({
     firstName,
@@ -150,10 +147,7 @@ app.post("/create-pdf", async (req, res) => {
 
   await user.save();
 
-  // res.status(200).send({
-  //   success: true,
-  //   message: "All done",
-  // });
+ 
 });
 
 app.get("/fetch-pdf", async (req, res) => {
