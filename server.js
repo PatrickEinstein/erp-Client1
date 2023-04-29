@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
-// const pdf = require("html-pdf");
+import Sampledata from "./SampleData/sampledata.js";
 const cors = require("cors");
 const fs = require("fs");
 const mongoose = require("mongoose");
@@ -20,9 +20,10 @@ const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
 const logger = morgan("combined");
 const puppeteer = require("puppeteer");
+import routes from "./Routes/routes.js";
 
 dotenv.config();
-const app = express()
+const app = express();
 
 mongoose.set("strictQuery", true);
 
@@ -56,16 +57,18 @@ app.use(logger);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
+
+//define routes
+app.use("/users", routes);
 
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-
-
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
-})
+});
 
 app.use(express.static("build"));
 
@@ -76,38 +79,34 @@ app.post("/create-pdf", async (req, res) => {
   fs.writeFileSync("index.html", html);
   // const html2 = fs.readFileSync("index.html", "utf8");
 
-
-
   const puppeteerPdf = async () => {
     // Create a browser instance
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
+      args: ["--no-sandbox"],
       timeout: 10000,
     });
-  
+
     // Create a new page
     const page = await browser.newPage();
-  
+
     //Get HTML content from HTML file
     const html2 = fs.readFileSync("index.html", "utf-8");
     await page.setContent(html2, { waitUntil: "domcontentloaded" });
-  
+
     // To reflect CSS used for screens instead of print
     await page.emulateMediaType("screen");
-  
+
     // Downlaod the PDF
     await page.pdf({
       path: "index.pdf",
       format: "Letter",
     });
-  
+
     // Close the browser instance
     await browser.close();
   };
 
   await puppeteerPdf();
-
-
 
   // const options = { format: "Letter" };
 
@@ -193,14 +192,17 @@ app.get("/fetch-pdf", async (req, res) => {
   `);
 });
 
-const start = async () => {
+const start = async (res, req) => {
   try {
     await connectDB(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("DB connection established");
-
+    //const finduser = await User.find();
+    //const LoadDB = await User.insertMany( Sampledata);
+    //const DeleteDB = await User.deleteMany()
+    //console.log(LoadDB);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );

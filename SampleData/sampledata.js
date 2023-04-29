@@ -1,0 +1,68 @@
+const Sampledata = [
+  {
+    firstName: "Olalekan",
+    lastName: "Oluwakemi",
+    email: "ola@gmail.com",
+    companyName: "Toke",
+    Products: "Coke",
+    phone: 904585930,
+    file: [],
+  },
+  {
+    firstName: "Abike",
+    lastName: "Omoade",
+    email: "omoader@gmail.com",
+    companyName: "Monie",
+    Products: "Awey",
+    phone: 8139345684,
+    file: [],
+},
+  {
+    firstName: "Ologo",
+    lastName: "Ade",
+    email: "ologog@gmail.com",
+    companyName: "Awake",
+    Products: "Fanta",
+    phone: 8139345681,
+    file: [],
+},
+  {
+    firstName: "Dumebi",
+    lastName: "Ososami",
+    email: "oso@gmail.com",
+    companyName: "Eja",
+    Products: "Eja",
+    phone: 8139345689,
+    file: [],
+},
+  {
+    firstName: "Alaska",
+    lastName: "Pollack",
+    email: "alake@gmail.com",
+    companyName: "Alaka",
+    Products: "Ika",
+    phone: 8139345686,
+    file: [],
+},
+  {
+    firstName: "Abike",
+    lastName: "Omoade",
+    email: "lade@gmail.com",
+    companyName: "Cooker",
+    Products: "Stive",
+    phone: 8139345686,
+    file: [],
+},
+  {
+    firstName: "Patrick",
+    lastName: "Mohammed",
+    email: "patocatve@gmail.com",
+    companyName: "cyclo_software",
+    Products: "Software",
+    phone: 8139345687,
+    file: [],
+},
+];
+
+
+export default Sampledata
