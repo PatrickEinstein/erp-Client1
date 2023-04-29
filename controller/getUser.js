@@ -12,17 +12,27 @@ const getThisUser = async (req, res) => {
         { firstName: parameter },
         { lastName: parameter },
         { email: parameter },
+        { companyName: parameter },
+        { Products: parameter },
+        { phone: parameter },
       ],
     });
 
     if (founduser.length === 0) {
       res.status(404).json({ message: "user not found" });
     } else {
-      const found = founduser.map(({ firstName, lastName, pdf }) => ({
-        firstName,
-        lastName,
-        file: [Buffer.from(pdf).toString("utf8")],
-      }));
+      const found = founduser.map(
+        ({ firstName, Products, lastName, phone, email, pdf, companyName }) => ({
+          firstName,
+          lastName,
+          phone,
+          email,
+          Products,
+          companyName,
+          // pdf,
+          file: [Buffer.from(pdf).toString("utf8")],
+        })
+      );
       res.status(200).json({ users: found });
     }
   } catch (err) {
@@ -37,11 +47,18 @@ export const getAllUsers = async (req, res) => {
     if (foundUsers.length === 0) {
       res.status(404).json({ message: "user not found" });
     } else {
-      const found = foundUsers.map(({ firstName, lastName, pdf }) => ({
-        firstName,
-        lastName,
-        file: [Buffer.from(pdf).toString("utf8")],
-      }));
+      const found = foundUsers.map(
+        ({ firstName, lastName, phone, email, pdf, companyName,Products }) => ({
+          firstName,
+          lastName,
+          phone,
+          email,
+          companyName,
+          Products,
+          // pdf,
+          file: [Buffer.from(pdf).toString("utf8")],
+        })
+      );
       console.log(found.length);
       res.status(200).json({ users: found });
     }

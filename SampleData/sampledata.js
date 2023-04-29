@@ -6,7 +6,11 @@ const Sampledata = [
     companyName: "Toke",
     Products: "Coke",
     phone: 904585930,
-    file: [],
+    pdf: {
+      type : "Buffer",
+           data: []
+
+    },
   },
   {
     firstName: "Abike",
@@ -15,8 +19,12 @@ const Sampledata = [
     companyName: "Monie",
     Products: "Awey",
     phone: 8139345684,
-    file: [],
-},
+    pdf: {
+      type : "Buffer",
+           data: []
+
+    },
+  },
   {
     firstName: "Ologo",
     lastName: "Ade",
@@ -24,8 +32,12 @@ const Sampledata = [
     companyName: "Awake",
     Products: "Fanta",
     phone: 8139345681,
-    file: [],
-},
+    pdf: {
+      type : "Buffer",
+           data: []
+
+    },
+  },
   {
     firstName: "Dumebi",
     lastName: "Ososami",
@@ -33,8 +45,12 @@ const Sampledata = [
     companyName: "Eja",
     Products: "Eja",
     phone: 8139345689,
-    file: [],
-},
+    pdf: {
+      type : "Buffer",
+           data: []
+
+    },
+  },
   {
     firstName: "Alaska",
     lastName: "Pollack",
@@ -42,8 +58,12 @@ const Sampledata = [
     companyName: "Alaka",
     Products: "Ika",
     phone: 8139345686,
-    file: [],
-},
+    pdf: {
+      type : "Buffer",
+           data: []
+
+    },
+  },
   {
     firstName: "Abike",
     lastName: "Omoade",
@@ -51,8 +71,11 @@ const Sampledata = [
     companyName: "Cooker",
     Products: "Stive",
     phone: 8139345686,
-    file: [],
-},
+    pdf: {
+      type : "Buffer",
+      data: []
+    },
+  },
   {
     firstName: "Patrick",
     lastName: "Mohammed",
@@ -60,9 +83,12 @@ const Sampledata = [
     companyName: "cyclo_software",
     Products: "Software",
     phone: 8139345687,
-    file: [],
-},
+    pdf: {
+      type : "Buffer",
+           data: []
+
+    }
+  },
 ];
 
-
-export default Sampledata
+export default Sampledata;

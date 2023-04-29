@@ -200,8 +200,9 @@ const start = async (res, req) => {
     });
     console.log("DB connection established");
     //const finduser = await User.find();
-    //const LoadDB = await User.insertMany( Sampledata);
     //const DeleteDB = await User.deleteMany()
+    //const LoadDB = await User.insertMany( Sampledata);
+    
     //console.log(LoadDB);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)

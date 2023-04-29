@@ -4,14 +4,14 @@ import validator from "validator";
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        //required: [true, 'Please provide a name'],
+        required: [true, 'Please provide a name'],
         minlength: 3,
         maxlength: 20,
         trim: true,
     },
     lastName: {
         type: String,
-        // required: [true, 'Please provide a name'],
+        required: [true, 'Please provide a name'],
         minlength: 3,
         maxlength: 20,
         trim: true,
@@ -26,7 +26,8 @@ const UserSchema = new mongoose.Schema({
     
     },
     phone: {
-        type: Number,
+        type: String,
+        // type: Number,
         required: [true, 'Please provide a phone number'],
     },
     companyName: {
