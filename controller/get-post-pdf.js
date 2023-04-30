@@ -1,31 +1,24 @@
 import fs from "fs";
 
 const getPdf = (req, res) => {
-  
   const filePath = req.params.path;
   fs.writeFileSync("download.pdf", filePath);
-  const pdfBuffer = fs.readFileSync('download.pdf')
+  const pdfBuffer = fs.readFileSync("download.pdf");
 
-  res.set('Content-Type', 'application/pdf')
-  res.set('Content-Disposition', 'attachment; filename="download.pdf"')
+  res.set("Content-Type", "application/pdf");
+  res.set("Content-Disposition", 'attachment; filename="download.pdf"');
   res.send(pdfBuffer);
-  
 };
 
-// const Post = (req, res) => {
-    
-//     const filePath = req.params.path;
-//     const pdfBuffer = fs.readFileSync("download.pdf");
-//     // fs.writeFileSync(filePath, (err, data) => {
-//     //   if (err) {
-//     //     res.status(500).send(err);
-//     //   } else {
-//     //     res.send(data);
-//     //   }
-//     // });
+const PostPdf = (req, res) => {
+  const { parameter } = req.body;
+  console.log(parameter)
+  fs.writeFileSync("download.pdf", filePath);
+  const pdfBuffer = fs.readFileSync("download.pdf");
 
-//     res.send(pdfBuffer)
-//   };
-
+  res.set("Content-Type", "application/pdf");
+  res.set("Content-Disposition", 'attachment; filename="download.pdf"');
+  res.send(pdfBuffer);
+};
 
 export default getPdf;
