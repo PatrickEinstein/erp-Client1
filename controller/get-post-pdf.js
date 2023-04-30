@@ -1,10 +1,14 @@
 import fs from "fs";
 
 const getPdf = (req, res) => {
-
+  
   const filePath = req.params.path;
-  const pdfBuffer = fs.readFileSync("download.pdf", filePath);
-  res.send(pdfBuffer)
+  fs.writeFileSync("download.pdf", filePath);
+  const pdfBuffer = fs.readFileSync('download.pdf')
+
+  res.set('Content-Type', 'application/pdf')
+  res.set('Content-Disposition', 'attachment; filename="download.pdf"')
+  res.send(pdfBuffer);
   
 };
 
