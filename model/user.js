@@ -43,13 +43,13 @@ const UserSchema = new mongoose.Schema({
         minlength: 3,
         trim: true,
     },
-    // pdf:{
-    //     type:Buffer
-    // }
     pdf:{
-        type:String,
-        default: "",
+        type:Buffer
     }
+    // pdf:{
+    //     type:String,
+    //     default: "",
+    // }
 })
 
 const User = mongoose.model("User", UserSchema);
