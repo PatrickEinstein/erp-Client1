@@ -43,8 +43,12 @@ const UserSchema = new mongoose.Schema({
         minlength: 3,
         trim: true,
     },
+    // pdf:{
+    //     type:Buffer
+    // }
     pdf:{
-        type:Buffer
+        type:String,
+        default: "",
     }
 })
 

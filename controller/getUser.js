@@ -29,8 +29,8 @@ const getThisUser = async (req, res) => {
           email,
           Products,
           companyName,
-          // pdf,
-          file: [Buffer.from(pdf).toString("utf8")],
+          pdf,
+          // file: [Buffer.from(pdf).toString("utf8")],
         })
       );
       res.status(200).json({ users: found });
@@ -55,8 +55,8 @@ export const getAllUsers = async (req, res) => {
           email,
           companyName,
           Products,
-          // pdf,
-          file: [Buffer.from(pdf).toString("utf8")],
+          pdf,
+         // file: [Buffer.from(pdf).toString("utf8")],
         })
       );
       console.log(found.length);
