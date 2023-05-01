@@ -44,58 +44,58 @@ const UserSchema = new mongoose.Schema({
         trim: true,
     },
     cat1: {
-        type: String
+        type: Number
     },
     cat2: {
-        type: String
+        type: Number
     },
     cat3: {
-        type: String
+        type: Number
     },
     cat4: {
-        type: String
+        type: Number
     },
     cat5: {
-        type: String
+        type: Number
     },
     cat6: {
-        type: String
+        type: Number
     },
     cat6: {
-        type: String
+        type: Number
     },
     cat7: {
-        type: String
+        type: Number
     },
     cat8: {
-        type: String
+        type: Number
     },
     cat9: {
-        type: String
+        type: Number
     },
     cat10: {
-        type: String
+        type: Number
     },
     cat11: {
-        type: String
+        type: Number
     },
     cat12: {
-        type: String
+        type: Number
     },
     cat13: {
-        type: String
+        type: Number
     },
     cat14: {
-        type: String
+        type: Number
     },
     cat15: {
-        type: String
+        type: Number
     },
     totalResult: {
-        type: String
+        type: Number
     },
     totalAveragePercentage: {
-        type: String
+        type: Number
     }
 })
 

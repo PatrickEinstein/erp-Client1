@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
 import Sampledata from "./SampleData/sampledata.js";
+
 const cors = require("cors");
 const fs = require("fs");
 const mongoose = require("mongoose");
@@ -70,11 +71,17 @@ app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 });
 
-app.use(express.static("build"));
+// app.use(express.static("build"));
+
+// Serve static files from the 'build' directory for the root route
+app.use("/", express.static(__dirname + "/build"));
+
+// Serve static files from the 'admin' directory for the '/admin' route
+app.use("/admin", express.static(__dirname + "/admin"));
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
-  console.log(data)
+  console.log(data);
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
@@ -114,7 +121,7 @@ app.post("/create-pdf", async (req, res) => {
   // pdf.create(html2, options).toFile("index.pdf", function (err, res) {
   //   return "Something broke";
   // });
-//  "info@3timpex.com",
+  //  "info@3timpex.com",
   const dataHandler = async () => {
     await new Promise((resolve) =>
       setTimeout(() => {
@@ -177,23 +184,23 @@ app.post("/create-pdf", async (req, res) => {
     Products,
   });
   // user.pdf = pdfBuffer;
-  user.cat1 = data.cat1
-  user.cat2 = data.cat1
-  user.cat3 = data.cat1
-  user.cat4 = data.cat1
-  user.cat5 = data.cat1
-  user.cat6 = data.cat1
-  user.cat7 = data.cat1
-  user.cat8 = data.cat1
-  user.cat9 = data.cat1
-  user.cat10 = data.cat1
-  user.cat11 = data.cat1
-  user.cat12 = data.cat1
-  user.cat13 = data.cat1
-  user.cat14 = data.cat1
-  user.cat15 = data.cat1
-  user.totalResult = data.totalResult
-  user.totalAveragePercentage = data.totalAveragePercentage
+  user.cat1 = data.cat1;
+  user.cat2 = data.cat1;
+  user.cat3 = data.cat1;
+  user.cat4 = data.cat1;
+  user.cat5 = data.cat1;
+  user.cat6 = data.cat1;
+  user.cat7 = data.cat1;
+  user.cat8 = data.cat1;
+  user.cat9 = data.cat1;
+  user.cat10 = data.cat1;
+  user.cat11 = data.cat1;
+  user.cat12 = data.cat1;
+  user.cat13 = data.cat1;
+  user.cat14 = data.cat1;
+  user.cat15 = data.cat1;
+  user.totalResult = data.totalResult;
+  user.totalAveragePercentage = data.totalAveragePercentage;
 
   await user.save();
 });
@@ -220,7 +227,7 @@ const start = async (res, req) => {
     //const finduser = await User.find();
     //const DeleteDB = await User.deleteMany()
     //const LoadDB = await User.insertMany( Sampledata);
-    
+
     //console.log(LoadDB);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
