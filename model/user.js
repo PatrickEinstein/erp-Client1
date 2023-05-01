@@ -43,12 +43,59 @@ const UserSchema = new mongoose.Schema({
         minlength: 3,
         trim: true,
     },
-    // pdf:{
-    //     type:Buffer
-    // }
-    pdf:{
-        type:String,
-        default: "",
+    cat1: {
+        type: String
+    },
+    cat2: {
+        type: String
+    },
+    cat3: {
+        type: String
+    },
+    cat4: {
+        type: String
+    },
+    cat5: {
+        type: String
+    },
+    cat6: {
+        type: String
+    },
+    cat6: {
+        type: String
+    },
+    cat7: {
+        type: String
+    },
+    cat8: {
+        type: String
+    },
+    cat9: {
+        type: String
+    },
+    cat10: {
+        type: String
+    },
+    cat11: {
+        type: String
+    },
+    cat12: {
+        type: String
+    },
+    cat13: {
+        type: String
+    },
+    cat14: {
+        type: String
+    },
+    cat15: {
+        type: String
+    },
+    totalResult: {
+        type: String
+    },
+    totalAveragePercentage: {
+        type: String
     }
 })
 

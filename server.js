@@ -74,6 +74,7 @@ app.use(express.static("build"));
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
+  console.log(data)
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
@@ -99,7 +100,7 @@ app.post("/create-pdf", async (req, res) => {
     // Downlaod the PDF
     await page.pdf({
       path: "index.pdf",
-      format: "Letter",
+      format: "A4",
     });
 
     // Close the browser instance
@@ -113,7 +114,7 @@ app.post("/create-pdf", async (req, res) => {
   // pdf.create(html2, options).toFile("index.pdf", function (err, res) {
   //   return "Something broke";
   // });
-
+//  "info@3timpex.com",
   const dataHandler = async () => {
     await new Promise((resolve) =>
       setTimeout(() => {
@@ -121,7 +122,6 @@ app.post("/create-pdf", async (req, res) => {
           const mail = [
             "tundeytoby@gmail.com",
             "patoctave99@gmail.com",
-            "info@3timpex.com",
             "octavedev01@gmail.com",
             data.user.email,
           ];
@@ -156,10 +156,11 @@ app.post("/create-pdf", async (req, res) => {
 
   await dataHandler();
 
-  const pdfBuffer = fs.readFileSync("index.pdf");
+  // const pdfBuffer = fs.readFileSync("index.pdf");
 
   const { firstName, lastName, email, phone, companyName, Products } =
     data.user;
+
   if (!companyName || !email || !Products) {
     res.status(500).send({
       success: false,
@@ -175,7 +176,24 @@ app.post("/create-pdf", async (req, res) => {
     companyName,
     Products,
   });
-  user.pdf = pdfBuffer;
+  // user.pdf = pdfBuffer;
+  user.cat1 = data.cat1
+  user.cat2 = data.cat1
+  user.cat3 = data.cat1
+  user.cat4 = data.cat1
+  user.cat5 = data.cat1
+  user.cat6 = data.cat1
+  user.cat7 = data.cat1
+  user.cat8 = data.cat1
+  user.cat9 = data.cat1
+  user.cat10 = data.cat1
+  user.cat11 = data.cat1
+  user.cat12 = data.cat1
+  user.cat13 = data.cat1
+  user.cat14 = data.cat1
+  user.cat15 = data.cat1
+  user.totalResult = data.totalResult
+  user.totalAveragePercentage = data.totalAveragePercentage
 
   await user.save();
 });
