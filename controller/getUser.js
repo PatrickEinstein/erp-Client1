@@ -9,14 +9,23 @@ const getThisUser = async (req, res) => {
 
     const founduser = await User.find({
       $or: [
-        { firstName: parameter },
-        { lastName: parameter },
-        { email: parameter },
-        { companyName: parameter },
-        { Products: parameter },
-        { phone: parameter },
+        { firstName: { $regex: parameter, $options: "i" } }, // case-insensitive search
+        { lastName: { $regex: parameter, $options: "i" } },
+        { email: { $regex: parameter, $options: "i" } },
+        { companyName: { $regex: parameter, $options: "i" } },
+        { Products: { $regex: parameter, $options: "i" } },
+        { phone: { $regex: parameter, $options: "i" } },
       ],
     });
+    //   $or: [
+    //     { firstName: parameter },
+    //     { lastName: parameter },
+    //     { email: parameter },
+    //     { companyName: parameter },
+    //     { Products: parameter },
+    //     { phone: parameter },
+    //   ],
+    // });
     console.log(founduser);
 
     if (founduser.length === 0) {
