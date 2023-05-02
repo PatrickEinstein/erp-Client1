@@ -7,8 +7,7 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
-// const pdf = require("html-pdf");
-// const cors = require("cors");
+import router from "./Routes/userRoutes.js";
 const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -22,7 +21,7 @@ const logger = morgan("combined");
 const puppeteer = require("puppeteer");
 
 dotenv.config();
-const app = express()
+const app = express();
 
 mongoose.set("strictQuery", true);
 
@@ -61,15 +60,15 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-
-
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
-})
+});
 
 app.get("/erp/myAdmin", (req, res) => {
-  res.send('<button><a href="admin-one-psi.vercel.app">GO to Admin</a></button>');
-})
+  res.send(
+    '<button><a href="admin-one-psi.vercel.app">GO to Admin</a></button>'
+  );
+});
 //  app.use(express.static("build"));
 
 // Serve static files from the 'build' directory for the root route
@@ -81,6 +80,8 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 // Serve static files from the public folder
 app.use(express.static("public"));
 
+app.use("/users", router);
+
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
   const html = pdfTemplate(data);
@@ -88,12 +89,10 @@ app.post("/create-pdf", async (req, res) => {
   fs.writeFileSync("index.html", html);
   // const html2 = fs.readFileSync("index.html", "utf8");
 
-
-
   const puppeteerPdf = async () => {
     // Create a browser instance
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
+      args: ["--no-sandbox"],
       timeout: 10000,
     });
     const cssStyles = [
@@ -121,17 +120,17 @@ app.post("/create-pdf", async (req, res) => {
     ];
     // Create a new page
     const page = await browser.newPage();
-  
+
     //Get HTML content from HTML file
     const html2 = fs.readFileSync("index.html", "utf-8");
 
     await page.setContent(html2, { waitUntil: "domcontentloaded" });
-    
+
     // Inject each CSS style into the page
     for (const cssStyle of cssStyles) {
       await page.addStyleTag({ content: cssStyle });
     }
-  
+
     // To reflect CSS used for screens instead of print
     await page.emulateMediaType("screen");
 
@@ -146,8 +145,6 @@ app.post("/create-pdf", async (req, res) => {
   };
 
   await puppeteerPdf();
-
-
 
   // const options = { format: "Letter" };
 
