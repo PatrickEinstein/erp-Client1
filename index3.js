@@ -568,21 +568,21 @@ table {
   top : 80px;
   left : 80px;
   height : 50px;
-  backgroundcolor: aqua;
+  background-color: aqua;
 }
 .heading{
   position : absolute;
   top : 0;
   left : 20%;
 height : 50px;
-backgroundcolor: aqua;
+background-color: aqua;
 }
 .details{
 line-height : 0px;
 position : absolute;
 top : 80px;
 right : 100px;
-backgroundcolor: aqua;
+background-color: aqua;
 }
 
 table{
@@ -601,10 +601,10 @@ table{
         </div>
         <div class="details">
           <h4>Name : ${user.firstName} ${user.lastName}</h4>
-          </br><h4>Phone : ${user.phone}</h4>
-          </br><h4>e-mail: ${user.email}</h4>
-          </br><h4>Company name : ${user.companyName}</h4>
-          </br><h4>Products : ${user.Products}</h4>
+          <h4>Phone : ${user.phone}</h4>
+          <h4>e-mail: ${user.email}</h4>
+          <h4>Company name : ${user.companyName}</h4>
+          <h4>Products : ${user.Products}</h4>
         </div>
           </div>  
           <table>
@@ -625,91 +625,107 @@ table{
          <td>${totalImp1}</td>
          <td>${totalrmp1}</td>
         
-       </tr><tr>
+       </tr>
+
+<tr>
        <td>Promoters</td>
          <td>${cat2}</td>
          <td>${totalImp2}</td>
          <td>${totalrmp2}</td>
          
-       </tr><tr>
+       </tr><br>
+<tr>
        <td>Products</td>
          <td>${cat3}</td>
          <td>${totalImp3}</td>
          <td>${totalrmp3}</td>
         
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Pricing</td>
          <td>${cat4}</td>
          <td>${totalImp4}</td>
          <td>${totalrmp4}</td>
         
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Predisposition</td>
          <td>${cat5}</td>
          <td>${totalImp5}</td>
          <td>${totalrmp5}</td>
        
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Purpose</td>
          <td>${cat6}</td>
          <td>${totalImp6}</td>
          <td>${totalrmp6}</td>
        
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Payment</td>
          <td>${cat7}</td>
          <td>${totalImp7}</td>
          <td>${totalrmp7}</td>
-        
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Production</td>
          <td>${cat8}</td>
          <td>${totalImp8}</td>
          <td>${totalrmp8}</td>
         
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Proficiency</td>
          <td>${cat9}</td>
          <td>${totalImp9}</td>
          <td>${totalrmp9}</td>
      
-       </tr><tr>
+         </tr><br>
+
+<tr>
        <td>People</td>
          <td>${cat10}</td>
          <td>${totalImp10}</td>
          <td>${totalrmp10}</td>
         
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Paperwork</td>
          <td>${cat11}</td>
          <td>${totalImp11}</td>
          <td>${totalrmp11}</td>
       
-       </tr><tr>
+         </tr><br>
+
+<tr>
        <td>Potential</td>
          <td>${cat12}</td>
-        
          <td>${totalImp12}</td>
          <td>${totalrmp12}</td>
-       </tr><tr>
+         </tr><br>
+
+<tr>
        <td>Promotion</td>
          <td>${cat13}</td>
-         
          <td>${totalImp13}</td>
          <td>${totalrmp13}</td>
-       </tr><tr>
+         </tr><br>
+<tr>
        <td>Purchasers</td>
          <td>${cat14}</td>
        
          <td>${totalImp14}</td>
          <td>${totalrmp14}</td>
-       </tr><tr>
+       </tr><br>
+
+<tr>
        <td>Partnership</td>
          <td>${cat15}</td>
-         
          <td>${totalImp15}</td>
          <td>${totalrmp15}</td>
-       </tr>
+       </tr><br>
+
        <tr>
        <td>Total</td>
          <td style="font-weight:bold;">${totalAveragePercentage.toFixed(
@@ -718,10 +734,13 @@ table{
          
          <td style="font-weight:bold;" >${totalimp}</td>
          <td style="font-weight:bold;">${totalsug}</td>
-       </tr>
+       </tr><br>
+    
+      <tr>
        <td>Grade</td>
        <td style="font-weight:bold;" >${Grade} </td>
      </tr>
+       
           </tbody>
         </table>
             

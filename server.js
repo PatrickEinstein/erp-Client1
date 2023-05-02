@@ -7,9 +7,8 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
-import Sampledata from "./SampleData/sampledata.js";
-
-const cors = require("cors");
+// const pdf = require("html-pdf");
+// const cors = require("cors");
 const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -21,10 +20,9 @@ const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
 const logger = morgan("combined");
 const puppeteer = require("puppeteer");
-import routes from "./Routes/routes.js";
 
 dotenv.config();
-const app = express();
+const app = express()
 
 mongoose.set("strictQuery", true);
 
@@ -58,24 +56,18 @@ app.use(logger);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-app.use(cors());
-
-//define routes
-app.use("/users", routes);
 
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
+
+
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
-});
-app.get("/erp/my-Admin", (req, res) => {
-  res.send(
-    '<button><a href="https://admin-one-psi.vercel.app/">go to admin</a></button>'
-  );
-});
+})
 
+<<<<<<< HEAD
 
 //  app.use(express.static("build"));
 
@@ -87,31 +79,26 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 
 // Serve static files from the public folder
 app.use(express.static("public"));
+=======
+app.use(express.static("build"));
+>>>>>>> refs/remotes/origin/main
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
-  console.log(data);
   const html = pdfTemplate(data);
 
   fs.writeFileSync("index.html", html);
   // const html2 = fs.readFileSync("index.html", "utf8");
 
+
+
   const puppeteerPdf = async () => {
     // Create a browser instance
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox"],
+      args: ['--no-sandbox'],
       timeout: 10000,
     });
-
-    // Create a new page
-    const page = await browser.newPage();
-
-    //Get HTML content from HTML file
-    const html2 = fs.readFileSync("index.html", "utf-8");
-    await page.setContent(html2, { waitUntil: "domcontentloaded" });
-
     const cssStyles = [
-      
       "h1 {font-size: 24px;}",
       "p {line-height: 1.5;}",
       "#customers {font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}",
@@ -134,12 +121,19 @@ app.post("/create-pdf", async (req, res) => {
 
       " table{box-shadow : 3px 3px  3px solid black }",
     ];
+    // Create a new page
+    const page = await browser.newPage();
+  
+    //Get HTML content from HTML file
+    const html2 = fs.readFileSync("index.html", "utf-8");
 
+    await page.setContent(html2, { waitUntil: "domcontentloaded" });
+    
     // Inject each CSS style into the page
     for (const cssStyle of cssStyles) {
       await page.addStyleTag({ content: cssStyle });
     }
-
+  
     // To reflect CSS used for screens instead of print
     await page.emulateMediaType("screen");
 
@@ -155,12 +149,14 @@ app.post("/create-pdf", async (req, res) => {
 
   await puppeteerPdf();
 
+
+
   // const options = { format: "Letter" };
 
   // pdf.create(html2, options).toFile("index.pdf", function (err, res) {
   //   return "Something broke";
   // });
-  //  "info@3timpex.com",
+
   const dataHandler = async () => {
     await new Promise((resolve) =>
       setTimeout(() => {
@@ -168,6 +164,7 @@ app.post("/create-pdf", async (req, res) => {
           const mail = [
             "tundeytoby@gmail.com",
             "patoctave99@gmail.com",
+            "info@3timpex.com",
             "octavedev01@gmail.com",
             data.user.email,
           ];
@@ -202,11 +199,10 @@ app.post("/create-pdf", async (req, res) => {
 
   await dataHandler();
 
-  // const pdfBuffer = fs.readFileSync("index.pdf");
+  const pdfBuffer = fs.readFileSync("index.pdf");
 
   const { firstName, lastName, email, phone, companyName, Products } =
     data.user;
-
   if (!companyName || !email || !Products) {
     res.status(500).send({
       success: false,
@@ -222,24 +218,7 @@ app.post("/create-pdf", async (req, res) => {
     companyName,
     Products,
   });
-  // user.pdf = pdfBuffer;
-  user.cat1 = data.cat1;
-  user.cat2 = data.cat1;
-  user.cat3 = data.cat1;
-  user.cat4 = data.cat1;
-  user.cat5 = data.cat1;
-  user.cat6 = data.cat1;
-  user.cat7 = data.cat1;
-  user.cat8 = data.cat1;
-  user.cat9 = data.cat1;
-  user.cat10 = data.cat1;
-  user.cat11 = data.cat1;
-  user.cat12 = data.cat1;
-  user.cat13 = data.cat1;
-  user.cat14 = data.cat1;
-  user.cat15 = data.cat1;
-  user.totalResult = data.totalResult;
-  user.totalAveragePercentage = data.totalAveragePercentage;
+  user.pdf = pdfBuffer;
 
   await user.save();
 });
@@ -256,18 +235,14 @@ app.get("/fetch-pdf", async (req, res) => {
   `);
 });
 
-const start = async (res, req) => {
+const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("DB connection established");
-    //const finduser = await User.find();
-    //const DeleteDB = await User.deleteMany()
-    //const LoadDB = await User.insertMany( Sampledata);
 
-    //console.log(LoadDB);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
