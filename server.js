@@ -7,7 +7,12 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
+<<<<<<< HEAD
 import router from "./Routes/userRoutes.js";
+=======
+// const pdf = require("html-pdf");
+const cors = require("cors");
+>>>>>>> refs/remotes/origin/main
 const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -65,10 +70,15 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/erp/myAdmin", (req, res) => {
+<<<<<<< HEAD
   res.send(
     '<button><a href="admin-one-psi.vercel.app">GO to Admin</a></button>'
   );
 });
+=======
+  res.send('<button><a href="https://admin-one-psi.vercel.app">GO to Admin</a></button>');
+})
+>>>>>>> refs/remotes/origin/main
 //  app.use(express.static("build"));
 
 // Serve static files from the 'build' directory for the root route
@@ -80,7 +90,39 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 // Serve static files from the public folder
 app.use(express.static("public"));
 
+<<<<<<< HEAD
 app.use("/users", router);
+=======
+
+const allowedOrigins = ["https://admin-one-psi.vercel.app"];
+
+// Do you want to skip the checking of the origin and grant authorization?
+const skipTheCheckingOfOrigin = true;
+
+// MIDDLEWARES
+app.use(
+  cors({
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or curl requests)
+        // or allow all origines (skipTheCheckingOfOrigin === true) 
+        if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
+
+        // -1 means that the user's origin is not in the array allowedOrigins
+        if (allowedOrigins.indexOf(origin) === -1) {
+            var msg =
+                "The CORS policy for this site does not " +
+                "allow access from the specified Origin.";
+
+            return callback(new Error(msg), false);
+        }
+        // origin is in the array allowedOrigins so authorization is granted
+        return callback(null, true);
+    },
+  })
+);
+
+
+>>>>>>> refs/remotes/origin/main
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
