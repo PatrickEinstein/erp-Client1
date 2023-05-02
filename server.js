@@ -66,7 +66,7 @@ const connectDB = (url) => {
 const allowedOrigins = ["https://admin-one-psi.vercel.app"];
 
 // Do you want to skip the checking of the origin and grant authorization?
-const skipTheCheckingOfOrigin = true;
+//const skipTheCheckingOfOrigin = true;
 
 // MIDDLEWARES
 // app.use(
