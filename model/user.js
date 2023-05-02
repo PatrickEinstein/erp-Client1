@@ -26,8 +26,7 @@ const UserSchema = new mongoose.Schema({
     
     },
     phone: {
-        type: String,
-        // type: Number,
+        type: Number,
         required: [true, 'Please provide a phone number'],
     },
     companyName: {
@@ -43,59 +42,8 @@ const UserSchema = new mongoose.Schema({
         minlength: 3,
         trim: true,
     },
-    cat1: {
-        type: Number
-    },
-    cat2: {
-        type: Number
-    },
-    cat3: {
-        type: Number
-    },
-    cat4: {
-        type: Number
-    },
-    cat5: {
-        type: Number
-    },
-    cat6: {
-        type: Number
-    },
-    cat6: {
-        type: Number
-    },
-    cat7: {
-        type: Number
-    },
-    cat8: {
-        type: Number
-    },
-    cat9: {
-        type: Number
-    },
-    cat10: {
-        type: Number
-    },
-    cat11: {
-        type: Number
-    },
-    cat12: {
-        type: Number
-    },
-    cat13: {
-        type: Number
-    },
-    cat14: {
-        type: Number
-    },
-    cat15: {
-        type: Number
-    },
-    totalResult: {
-        type: Number
-    },
-    totalAveragePercentage: {
-        type: Number
+    pdf:{
+        type:Buffer
     }
 })
 
