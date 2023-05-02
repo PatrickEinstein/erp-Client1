@@ -70,6 +70,11 @@ const connectDB = (url) => {
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 });
+app.get("/erp/my-Admin", (req, res) => {
+  res.send(
+    '<button><a href="https://admin-one-psi.vercel.app/">go to admin</a></button>'
+  );
+});
 
 //  app.use(express.static("build"));
 
@@ -79,10 +84,8 @@ app.use("/", express.static(__dirname + "/build"));
 // Serve static files from the 'admin' directory for the '/admin' route
 app.use("/admin", express.static(__dirname + "/Admin"));
 
-
 // Serve static files from the public folder
 app.use(express.static("public"));
-
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
