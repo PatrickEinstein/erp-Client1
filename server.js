@@ -8,8 +8,7 @@ const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
 import router from "./Routes/userRoutes.js";
-const cors = require("cors");
-const fs = require("fs");
+
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const StatusCodes = require("http-status-codes");
