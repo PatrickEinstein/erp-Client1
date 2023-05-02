@@ -67,8 +67,9 @@ app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 })
 
-<<<<<<< HEAD
-
+app.get("/erp/myAdmin", (req, res) => {
+  res.send('<button><a href="admin-one-psi.vercel.app">GO to Admin</a></button>');
+})
 //  app.use(express.static("build"));
 
 // Serve static files from the 'build' directory for the root route
@@ -79,9 +80,6 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 
 // Serve static files from the public folder
 app.use(express.static("public"));
-=======
-app.use(express.static("build"));
->>>>>>> refs/remotes/origin/main
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
