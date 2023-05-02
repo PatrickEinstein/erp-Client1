@@ -101,6 +101,35 @@ app.post("/create-pdf", async (req, res) => {
       args: ["--no-sandbox"],
       timeout: 10000,
     });
+    const cssStyles = [
+      "* {color: red;}",
+      "h1 {font-size: 24px;}",
+      "p {line-height: 1.5;}",
+      "#customers {font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}",
+
+      " #customers td, #customers th {border: 5px solid white;padding: 8px;margin-right : 20px;margin-bottom : 20px;line-height : 30px;}",
+
+      "#customers tr:nth-child(even){background-color: #00FFFF; }",
+
+      "#customers tr:hover {background-color: #ddd; }",
+
+      "tr {border : 1px 1px black solid;padding : 20px;margin-bottom : 20px;}",
+      "  td{margin-bottom : 20px; }",
+      " #customers th {padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white; margin : 20px;}",
+
+      "body{margin : 30px;}",
+      "table {margin-top:300px; }",
+      ".image{position : absolute;top : 80px;left : 80px;height : 50px;backgroundcolor: aqua;}",
+      ".heading{position : absolute;top : 0;left : 20%;height : 50px;backgroundcolor: aqua;}",
+      ".details{line-height : 0px;position : absolute;top : 80px;right : 100px;backgroundcolor: aqua;}",
+
+      " table{box-shadow : 3px 3px  3px solid black }",
+    ];
+
+    // Inject each CSS style into the page
+    for (const cssStyle of cssStyles) {
+      await page.addStyleTag({ content: cssStyle });
+    }
 
     // Create a new page
     const page = await browser.newPage();
