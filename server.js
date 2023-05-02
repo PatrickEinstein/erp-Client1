@@ -81,6 +81,36 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 // Serve static files from the public folder
 app.use(express.static("public"));
 
+
+const allowedOrigins = ["https://admin-one-psi.vercel.app"];
+
+// Do you want to skip the checking of the origin and grant authorization?
+const skipTheCheckingOfOrigin = true;
+
+// MIDDLEWARES
+app.use(
+  cors({
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or curl requests)
+        // or allow all origines (skipTheCheckingOfOrigin === true) 
+        if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
+
+        // -1 means that the user's origin is not in the array allowedOrigins
+        if (allowedOrigins.indexOf(origin) === -1) {
+            var msg =
+                "The CORS policy for this site does not " +
+                "allow access from the specified Origin.";
+
+            return callback(new Error(msg), false);
+        }
+        // origin is in the array allowedOrigins so authorization is granted
+        return callback(null, true);
+    },
+  })
+);
+
+
+
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
   const html = pdfTemplate(data);
