@@ -110,7 +110,7 @@ app.post("/create-pdf", async (req, res) => {
     await page.setContent(html2, { waitUntil: "domcontentloaded" });
 
     const cssStyles = [
-      "* {color: red;}",
+      
       "h1 {font-size: 24px;}",
       "p {line-height: 1.5;}",
       "#customers {font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}",
