@@ -118,16 +118,8 @@ app.post("/create-pdf", async (req, res) => {
     // Inject each CSS style into the page
     for (const cssStyle of cssStyles) {
       await page.addStyleTag({ content: cssStyle });
+    }
   
-    // To reflect CSS used for screens instead of print
-    await page.emulateMediaType("screen");
-  
-    // Downlaod the PDF
-    await page.pdf({
-      path: "index.pdf",
-      format: "Letter",
-    });
-
     // To reflect CSS used for screens instead of print
     await page.emulateMediaType("screen");
 
@@ -136,9 +128,6 @@ app.post("/create-pdf", async (req, res) => {
       path: "index.pdf",
       format: "A4",
     });
-
-  
-    }
 
     // Close the browser instance
     await browser.close();
