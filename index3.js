@@ -1,7 +1,15 @@
 import RecommendationsImplication from "./implications.js";
 import Rewards from "./exportReady.js";
 import totalAveragePercentages from "./totalimplications.js";
-import Percentage from"./category.js";
+import Percentage from "./category.js";
+// const fs = require("fs");
+import fs from "fs";
+
+// Read the image file and encode it as a Base64 string
+const image = fs.readFileSync("./public/explogo.jpeg", { encoding: "base64" });
+
+// Create an img element with the Base64-encoded image as the src attribute
+const imgElement = `<img src="data:image/jpeg;base64,${image}" alt="My Image"  style ="height:100px; width:100px">`;
 
 const timp1 = Percentage[4].implication;
 const timp2 = Percentage[3].implication;
@@ -30,95 +38,95 @@ const im24 = Implications2[3];
 const im25 = Implications2[4];
 
 const Implications3 = Rewards[2].implications;
-const im31 = Implications2[0];
-const im32 = Implications2[1];
-const im33 = Implications2[2];
-const im34 = Implications2[3];
-const im35 = Implications2[4];
+const im31 = Implications3[0];
+const im32 = Implications3[1];
+const im33 = Implications3[2];
+const im34 = Implications3[3];
+const im35 = Implications3[4];
 
 const Implications4 = Rewards[3].implications;
-const im41 = Implications2[0];
-const im42 = Implications2[1];
-const im43 = Implications2[2];
-const im44 = Implications2[3];
-const im45 = Implications2[4];
+const im41 = Implications4[0];
+const im42 = Implications4[1];
+const im43 = Implications4[2];
+const im44 = Implications4[3];
+const im45 = Implications4[4];
 
 const Implications5 = Rewards[4].implications;
-const im51 = Implications2[0];
-const im52 = Implications2[1];
-const im53 = Implications2[2];
-const im54 = Implications2[3];
-const im55 = Implications2[4];
+const im51 = Implications5[0];
+const im52 = Implications5[1];
+const im53 = Implications5[2];
+const im54 = Implications5[3];
+const im55 = Implications5[4];
 
 const Implications6 = Rewards[5].implications;
-const im61 = Implications2[0];
-const im62 = Implications2[1];
-const im63 = Implications2[2];
-const im64 = Implications2[3];
-const im65 = Implications2[4];
+const im61 = Implications6[0];
+const im62 = Implications6[1];
+const im63 = Implications6[2];
+const im64 = Implications6[3];
+const im65 = Implications6[4];
 
-const Implications7 = Rewards[7].implications;
-const im71 = Implications2[0];
-const im72 = Implications2[1];
-const im73 = Implications2[2];
-const im74 = Implications2[3];
-const im75 = Implications2[4];
+const Implications7 = Rewards[6].implications;
+const im71 = Implications7[0];
+const im72 = Implications7[1];
+const im73 = Implications7[2];
+const im74 = Implications7[3];
+const im75 = Implications7[4];
 
 const Implications8 = Rewards[7].implications;
-const im81 = Implications2[0];
-const im82 = Implications2[1];
-const im83 = Implications2[2];
-const im84 = Implications2[3];
-const im85 = Implications2[4];
+const im81 = Implications8[0];
+const im82 = Implications8[1];
+const im83 = Implications8[2];
+const im84 = Implications8[3];
+const im85 = Implications8[4];
 
 const Implications9 = Rewards[8].implications;
-const im91 = Implications2[0];
-const im92 = Implications2[1];
-const im93 = Implications2[2];
-const im94 = Implications2[3];
-const im95 = Implications2[4];
+const im91 = Implications9[0];
+const im92 = Implications9[1];
+const im93 = Implications9[2];
+const im94 = Implications9[3];
+const im95 = Implications9[4];
 
 const Implications10 = Rewards[9].implications;
-const im101 = Implications2[0];
-const im102 = Implications2[1];
-const im103 = Implications2[2];
-const im104 = Implications2[3];
-const im105 = Implications2[4];
+const im101 = Implications10[0];
+const im102 = Implications10[1];
+const im103 = Implications10[2];
+const im104 = Implications10[3];
+const im105 = Implications10[4];
 
-const Implications611 = Rewards[10].implications;
-const im111 = Implications2[0];
-const im112 = Implications2[1];
-const im113 = Implications2[2];
-const im114 = Implications2[3];
-const im115 = Implications2[4];
+const Implications11 = Rewards[10].implications;
+const im111 = Implications11[0];
+const im112 = Implications11[1];
+const im113 = Implications11[2];
+const im114 = Implications11[3];
+const im115 = Implications11[4];
 
 const Implications12 = Rewards[11].implications;
-const im121 = Implications2[0];
-const im122 = Implications2[1];
-const im123 = Implications2[2];
-const im124 = Implications2[3];
-const im125 = Implications2[4];
+const im121 = Implications12[0];
+const im122 = Implications12[1];
+const im123 = Implications12[2];
+const im124 = Implications12[3];
+const im125 = Implications12[4];
 
 const Implications13 = Rewards[12].implications;
-const im131 = Implications2[0];
-const im132 = Implications2[1];
-const im133 = Implications2[2];
-const im134 = Implications2[3];
-const im135 = Implications2[4];
+const im131 = Implications13[0];
+const im132 = Implications13[1];
+const im133 = Implications13[2];
+const im134 = Implications13[3];
+const im135 = Implications13[4];
 
 const Implications14 = Rewards[13].implications;
-const im141 = Implications2[0];
-const im142 = Implications2[1];
-const im143 = Implications2[2];
-const im144 = Implications2[3];
-const im145 = Implications2[4];
+const im141 = Implications14[0];
+const im142 = Implications14[1];
+const im143 = Implications14[2];
+const im144 = Implications14[3];
+const im145 = Implications14[4];
 
 const Implications15 = Rewards[14].implications;
-const im151 = Implications2[0];
-const im152 = Implications2[1];
-const im153 = Implications2[2];
-const im154 = Implications2[3];
-const im155 = Implications2[4];
+const im151 = Implications15[0];
+const im152 = Implications15[1];
+const im153 = Implications15[2];
+const im154 = Implications15[3];
+const im155 = Implications15[4];
 
 const recommendations1 = Rewards[0].recommendations;
 const rm1 = recommendations1[0];
@@ -135,95 +143,95 @@ const rm24 = recommendations2[3];
 const rm25 = recommendations2[4];
 
 const recommendations3 = Rewards[2].recommendations;
-const rm31 = recommendations2[0];
-const rm32 = recommendations2[1];
-const rm33 = recommendations2[2];
-const rm34 = recommendations2[3];
-const rm35 = recommendations2[4];
+const rm31 = recommendations3[0];
+const rm32 = recommendations3[1];
+const rm33 = recommendations3[2];
+const rm34 = recommendations3[3];
+const rm35 = recommendations3[4];
 
 const recommendations4 = Rewards[3].recommendations;
-const rm41 = recommendations2[0];
-const rm42 = recommendations2[1];
-const rm43 = recommendations2[2];
-const rm44 = recommendations2[3];
-const rm45 = recommendations2[4];
+const rm41 = recommendations4[0];
+const rm42 = recommendations4[1];
+const rm43 = recommendations4[2];
+const rm44 = recommendations4[3];
+const rm45 = recommendations4[4];
 
 const recommendations5 = Rewards[4].recommendations;
-const rm51 = recommendations2[0];
-const rm52 = recommendations2[1];
-const rm53 = recommendations2[2];
-const rm54 = recommendations2[3];
-const rm55 = recommendations2[4];
+const rm51 = recommendations5[0];
+const rm52 = recommendations5[1];
+const rm53 = recommendations5[2];
+const rm54 = recommendations5[3];
+const rm55 = recommendations5[4];
 
 const recommendations6 = Rewards[5].recommendations;
-const rm61 = recommendations2[0];
-const rm62 = recommendations2[1];
-const rm63 = recommendations2[2];
-const rm64 = recommendations2[3];
-const rm65 = recommendations2[4];
+const rm61 = recommendations6[0];
+const rm62 = recommendations6[1];
+const rm63 = recommendations6[2];
+const rm64 = recommendations6[3];
+const rm65 = recommendations6[4];
 
-const recommendations7 = Rewards[7].recommendations;
-const rm71 = recommendations2[0];
-const rm72 = recommendations2[1];
-const rm73 = recommendations2[2];
-const rm74 = recommendations2[3];
-const rm75 = recommendations2[4];
+const recommendations7 = Rewards[6].recommendations;
+const rm71 = recommendations7[0];
+const rm72 = recommendations7[1];
+const rm73 = recommendations7[2];
+const rm74 = recommendations7[3];
+const rm75 = recommendations7[4];
 
 const recommendations8 = Rewards[7].recommendations;
-const rm81 = recommendations2[0];
-const rm82 = recommendations2[1];
-const rm83 = recommendations2[2];
-const rm84 = recommendations2[3];
-const rm85 = recommendations2[4];
+const rm81 = recommendations8[0];
+const rm82 = recommendations8[1];
+const rm83 = recommendations8[2];
+const rm84 = recommendations8[3];
+const rm85 = recommendations8[4];
 
 const recommendations9 = Rewards[8].recommendations;
-const rm91 = recommendations2[0];
-const rm92 = recommendations2[1];
-const rm93 = recommendations2[2];
-const rm94 = recommendations2[3];
-const rm95 = recommendations2[4];
+const rm91 = recommendations9[0];
+const rm92 = recommendations9[1];
+const rm93 = recommendations9[2];
+const rm94 = recommendations9[3];
+const rm95 = recommendations9[4];
 
 const recommendations10 = Rewards[9].recommendations;
-const rm101 = recommendations2[0];
-const rm102 = recommendations2[1];
-const rm103 = recommendations2[2];
-const rm104 = recommendations2[3];
-const rm105 = recommendations2[4];
+const rm101 = recommendations10[0];
+const rm102 = recommendations10[1];
+const rm103 = recommendations10[2];
+const rm104 = recommendations10[3];
+const rm105 = recommendations10[4];
 
-const recommendations611 = Rewards[10].recommendations;
-const rm111 = recommendations2[0];
-const rm112 = recommendations2[1];
-const rm113 = recommendations2[2];
-const rm114 = recommendations2[3];
-const rm115 = recommendations2[4];
+const recommendations11 = Rewards[10].recommendations;
+const rm111 = recommendations11[0];
+const rm112 = recommendations11[1];
+const rm113 = recommendations11[2];
+const rm114 = recommendations11[3];
+const rm115 = recommendations11[4];
 
 const recommendations12 = Rewards[11].recommendations;
-const rm121 = recommendations2[0];
-const rm122 = recommendations2[1];
-const rm123 = recommendations2[2];
-const rm124 = recommendations2[3];
-const rm125 = recommendations2[4];
+const rm121 = recommendations12[0];
+const rm122 = recommendations12[1];
+const rm123 = recommendations12[2];
+const rm124 = recommendations12[3];
+const rm125 = recommendations12[4];
 
 const recommendations13 = Rewards[12].recommendations;
-const rm131 = recommendations2[0];
-const rm132 = recommendations2[1];
-const rm133 = recommendations2[2];
-const rm134 = recommendations2[3];
-const rm135 = recommendations2[4];
+const rm131 = recommendations13[0];
+const rm132 = recommendations13[1];
+const rm133 = recommendations13[2];
+const rm134 = recommendations13[3];
+const rm135 = recommendations13[4];
 
 const recommendations14 = Rewards[13].recommendations;
-const rm141 = recommendations2[0];
-const rm142 = recommendations2[1];
-const rm143 = recommendations2[2];
-const rm144 = recommendations2[3];
-const rm145 = recommendations2[4];
+const rm141 = recommendations14[0];
+const rm142 = recommendations14[1];
+const rm143 = recommendations14[2];
+const rm144 = recommendations14[3];
+const rm145 = recommendations14[4];
 
 const recommendations15 = Rewards[14].recommendations;
-const rm151 = recommendations2[0];
-const rm152 = recommendations2[1];
-const rm153 = recommendations2[2];
-const rm154 = recommendations2[3];
-const rm155 = recommendations2[4];
+const rm151 = recommendations15[0];
+const rm152 = recommendations15[1];
+const rm153 = recommendations15[2];
+const rm154 = recommendations15[3];
+const rm155 = recommendations15[4];
 
 const pdfTemplate = ({
   cat1,
@@ -376,7 +384,7 @@ const pdfTemplate = ({
     im145
   );
   const totalImp15 = RecommendationsImplication(
-    cat2,
+    cat15,
     im151,
     im152,
     im153,
@@ -532,6 +540,10 @@ const pdfTemplate = ({
 tr {
   border : 1px 1px black solid;
   padding : 20px;
+  margin-bottom : 20px;
+}
+td{
+  margin-bottom : 20px;
 }
 #customers th {
   padding-top: 12px;
@@ -582,10 +594,7 @@ table{
        <body>
           <div class="container">
           <div class="image">
-          <img
-          src="https://i.ibb.co/9t5b7BH/editpage.jpgx150x150"
-          style ="height:100px; width:100px"
-        />
+          ${imgElement}
         </div>
         <div class="heading">
         <h2> Export Readiness Assessment For ${user.companyName}</h2>
@@ -616,94 +625,129 @@ table{
          <td>${totalImp1}</td>
          <td>${totalrmp1}</td>
         
-       </tr><tr>
+       </tr></br></br></br>
+
+<tr>
        <td>Promoters</td>
          <td>${cat2}</td>
          <td>${totalImp2}</td>
          <td>${totalrmp2}</td>
          
-       </tr><tr>
+       </tr>/br></br></br>
+<tr>
        <td>Products</td>
          <td>${cat3}</td>
          <td>${totalImp3}</td>
          <td>${totalrmp3}</td>
         
-       </tr><tr>
+       </tr>/br></br></br>
+<tr>
        <td>Pricing</td>
          <td>${cat4}</td>
          <td>${totalImp4}</td>
          <td>${totalrmp4}</td>
         
-       </tr><tr>
+       </tr>/br></br></br>
+<tr>
        <td>Predisposition</td>
          <td>${cat5}</td>
          <td>${totalImp5}</td>
          <td>${totalrmp5}</td>
        
-       </tr><tr>
+       </tr>/br></br></br>
+<tr>
        <td>Purpose</td>
          <td>${cat6}</td>
          <td>${totalImp6}</td>
          <td>${totalrmp6}</td>
        
-       </tr><tr>
+       </tr>/br></br></br>
+<tr>
        <td>Payment</td>
          <td>${cat7}</td>
          <td>${totalImp7}</td>
          <td>${totalrmp7}</td>
         
-       </tr><tr>
+       </tr>
+/br></br></br>
+<tr>
        <td>Production</td>
          <td>${cat8}</td>
          <td>${totalImp8}</td>
          <td>${totalrmp8}</td>
         
-       </tr><tr>
+       </tr>
+
+/br></br></br>
+<tr>
        <td>Proficiency</td>
          <td>${cat9}</td>
          <td>${totalImp9}</td>
          <td>${totalrmp9}</td>
      
-       </tr><tr>
+       </tr>
+/br></br></br>
+
+<tr>
        <td>People</td>
          <td>${cat10}</td>
          <td>${totalImp10}</td>
          <td>${totalrmp10}</td>
         
-       </tr><tr>
+       </tr>
+
+/br></br></br>
+<tr>
        <td>Paperwork</td>
          <td>${cat11}</td>
          <td>${totalImp11}</td>
          <td>${totalrmp11}</td>
       
-       </tr><tr>
+       </tr>
+/br></br></br>
+
+<tr>
        <td>Potential</td>
          <td>${cat12}</td>
         
          <td>${totalImp12}</td>
          <td>${totalrmp12}</td>
-       </tr><tr>
+       </tr>
+/br></br></br>
+
+<tr>
        <td>Promotion</td>
          <td>${cat13}</td>
          
          <td>${totalImp13}</td>
          <td>${totalrmp13}</td>
-       </tr><tr>
+       </tr>
+
+/br></br></br>
+<tr>
        <td>Purchasers</td>
          <td>${cat14}</td>
        
          <td>${totalImp14}</td>
          <td>${totalrmp14}</td>
-       </tr><tr>
+       </tr>
+/br></br></br>
+
+<tr>
        <td>Partnership</td>
          <td>${cat15}</td>
          
          <td>${totalImp15}</td>
          <td>${totalrmp15}</td>
        </tr>
+/br></br></br>
+
+
        <tr>
        <td>Total</td>
-         <td style="font-weight:bold;">${totalAveragePercentage.toFixed(2)} %</td>
+         <td style="font-weight:bold;">${totalAveragePercentage.toFixed(
+           2
+         )} %</td>
          
          <td style="font-weight:bold;" >${totalimp}</td>
          <td style="font-weight:bold;">${totalsug}</td>
@@ -711,6 +755,9 @@ table{
        <td>Grade</td>
        <td style="font-weight:bold;" >${Grade} </td>
      </tr>
+
+/br></br></br>
+
           </tbody>
         </table>
             
