@@ -71,21 +71,18 @@ app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 });
 
-// app.use(express.static("build"));
+//  app.use(express.static("build"));
 
 // Serve static files from the 'build' directory for the root route
-app.use("/", express.static(__dirname + "/build"));
+app.use("/", express.static(__dirname + "/Client"));
+
+// Serve static files from the 'admin' directory for the '/admin' route
+app.use("/admin", express.static(__dirname + "/Admin"));
+
 
 // Serve static files from the public folder
 app.use(express.static("public"));
 
-// Route for the index.html file
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
-
-// Serve static files from the 'admin' directory for the '/admin' route
-app.use("/admin", express.static(__dirname + "/admin"));
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
