@@ -101,6 +101,24 @@ app.post("/create-pdf", async (req, res) => {
       args: ["--no-sandbox"],
       timeout: 10000,
     });
+  
+
+    // Create a new page
+    const page = await browser.newPage();
+
+    //Get HTML content from HTML file
+    const html2 = fs.readFileSync("index.html", "utf-8");
+    await page.setContent(html2, { waitUntil: "domcontentloaded" });
+
+    // To reflect CSS used for screens instead of print
+    await page.emulateMediaType("screen");
+
+    // Downlaod the PDF
+    await page.pdf({
+      path: "index.pdf",
+      format: "A4",
+    });
+
     const cssStyles = [
       "* {color: red;}",
       "h1 {font-size: 24px;}",
@@ -130,22 +148,6 @@ app.post("/create-pdf", async (req, res) => {
     for (const cssStyle of cssStyles) {
       await page.addStyleTag({ content: cssStyle });
     }
-
-    // Create a new page
-    const page = await browser.newPage();
-
-    //Get HTML content from HTML file
-    const html2 = fs.readFileSync("index.html", "utf-8");
-    await page.setContent(html2, { waitUntil: "domcontentloaded" });
-
-    // To reflect CSS used for screens instead of print
-    await page.emulateMediaType("screen");
-
-    // Downlaod the PDF
-    await page.pdf({
-      path: "index.pdf",
-      format: "A4",
-    });
 
     // Close the browser instance
     await browser.close();
