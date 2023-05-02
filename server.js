@@ -19,6 +19,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
 const logger = morgan("combined");
 const puppeteer = require("puppeteer");
+const cors = require("cors");
 
 
 dotenv.config();
