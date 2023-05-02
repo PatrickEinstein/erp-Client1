@@ -717,15 +717,14 @@ table{
        
          <td>${totalImp14}</td>
          <td>${totalrmp14}</td>
-       </tr>
-/br></br></br>
+       </tr><br>
 
 <tr>
        <td>Partnership</td>
          <td>${cat15}</td>
          <td>${totalImp15}</td>
          <td>${totalrmp15}</td>
-         </tr><br>
+       </tr><br>
 
        <tr>
        <td>Total</td>
@@ -735,11 +734,13 @@ table{
          
          <td style="font-weight:bold;" >${totalimp}</td>
          <td style="font-weight:bold;">${totalsug}</td>
-       </tr>
+       </tr><br>
+    
+      <tr>
        <td>Grade</td>
        <td style="font-weight:bold;" >${Grade} </td>
-     </tr><br>
-
+     </tr>
+       
           </tbody>
         </table>
             
