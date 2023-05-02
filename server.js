@@ -68,7 +68,7 @@ app.get("/test", (req, res) => {
 })
 
 app.get("/erp/myAdmin", (req, res) => {
-  res.send('<button><a href="admin-one-psi.vercel.app">GO to Admin</a></button>');
+  res.send('<button><a href="https://admin-one-psi.vercel.app">GO to Admin</a></button>');
 })
 //  app.use(express.static("build"));
 
