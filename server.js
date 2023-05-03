@@ -62,43 +62,15 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-// const allowedOrigins = ["https://admin-one-psi.vercel.app"];
-
-// Do you want to skip the checking of the origin and grant authorization?
-// const skipTheCheckingOfOrigin = true;
-
-// MIDDLEWARES
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//         // allow requests with no origin (like mobile apps or curl requests)
-//         // or allow all origines (skipTheCheckingOfOrigin === true)
-//         if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
-
-//         // -1 means that the user's origin is not in the array allowedOrigins
-//         if (allowedOrigins.indexOf(origin) === -1) {
-//             var msg =
-//                 "The CORS policy for this site does not " +
-//                 "allow access from the specified Origin.";
-
-//             return callback(new Error(msg), false);
-//         }
-//         // origin is in the array allowedOrigins so authorization is granted
-//         return callback(null, true);
-//     },
-//   })
-// );
-
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 });
 
 app.get("/erp/myAdmin", (req, res) => {
-  res.send(
-    '<button><a href="https://erp-admin.vercel.app/">GO to Admin</a></button>'
-  );
-});
-//  app.use(express.static("build"));
+
+  res.send('<button><a href="https://erp-admin.vercel.app">GO to Admin</a></button>');
+})
+
 
 // Serve static files from the 'build' directory for the root route
 app.use("/", express.static(__dirname + "/build"));
@@ -108,6 +80,37 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 
 // Serve static files from the public folder
 app.use(express.static("public"));
+
+
+const allowedOrigins = ["https://erp-admin.vercel.app"];
+
+// Do you want to skip the checking of the origin and grant authorization?
+const skipTheCheckingOfOrigin = true;
+
+// MIDDLEWARES
+app.use(
+  cors({
+    origin: function (origin, callback) {
+        // allow requests with no origin (like mobile apps or curl requests)
+        // or allow all origines (skipTheCheckingOfOrigin === true) 
+        if (!origin || skipTheCheckingOfOrigin === true) {
+          return callback(null, true);
+        }
+
+        // -1 means that the user's origin is not in the array allowedOrigins
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg =
+                "The CORS policy for this site does not " +
+                "allow access from the specified Origin.";
+
+            return callback(new Error(msg), false);
+        }
+        // origin is in the array allowedOrigins so authorization is granted
+        return callback(null, true);
+    },
+  })
+);
+
 
 app.use("/users", router);
 
@@ -215,7 +218,24 @@ app.post("/create-pdf", async (req, res) => {
     companyName,
     Products,
   });
-  user.pdf = pdfBuffer;
+
+  user.cat1 = data.cat1 
+  user.cat2 = data.cat2 
+  user.cat3 = data.cat3 
+  user.cat4 = data.cat4 
+  user.cat5 = data.cat5 
+  user.cat6 = data.cat6 
+  user.cat7 = data.cat7 
+  user.cat8 = data.cat8 
+  user.cat9 = data.cat9 
+  user.cat10 = data.cat10 
+  user.cat11 = data.cat11
+  user.cat12 = data.cat12 
+  user.cat13 = data.cat13
+  user.cat14 = data.cat14
+  user.cat15 = data.cat15
+  user.totalAveragePercentage = data.totalAveragePercentage
+  user.totalResult = data.totalResult
 
   await user.save();
 });
