@@ -559,7 +559,7 @@ body{
   margin : 30px;
 }
 table {
-  margin-top:300px;
+  margin-top:20px;
 }
 
 .image{

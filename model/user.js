@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     
     },
     phone: {
-        type: Number,
+        type: String,
         required: [true, 'Please provide a phone number'],
     },
     companyName: {

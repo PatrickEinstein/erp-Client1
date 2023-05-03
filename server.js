@@ -7,8 +7,7 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
-// const pdf = require("html-pdf");
-const cors = require("cors");
+import router from "./Routes/userRoutes.js";
 const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -20,9 +19,10 @@ const mongoSanitize = require("express-mongo-sanitize");
 const path = require("path");
 const logger = morgan("combined");
 const puppeteer = require("puppeteer");
+const cors = require("cors");
 
 dotenv.config();
-const app = express()
+const app = express();
 
 mongoose.set("strictQuery", true);
 
@@ -56,20 +56,48 @@ app.use(logger);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
 
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
+// const allowedOrigins = ["https://admin-one-psi.vercel.app"];
 
+// Do you want to skip the checking of the origin and grant authorization?
+// const skipTheCheckingOfOrigin = true;
+
+// MIDDLEWARES
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//         // allow requests with no origin (like mobile apps or curl requests)
+//         // or allow all origines (skipTheCheckingOfOrigin === true)
+//         if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
+
+//         // -1 means that the user's origin is not in the array allowedOrigins
+//         if (allowedOrigins.indexOf(origin) === -1) {
+//             var msg =
+//                 "The CORS policy for this site does not " +
+//                 "allow access from the specified Origin.";
+
+//             return callback(new Error(msg), false);
+//         }
+//         // origin is in the array allowedOrigins so authorization is granted
+//         return callback(null, true);
+//     },
+//   })
+// );
 
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
-})
+});
 
 app.get("/erp/myAdmin", (req, res) => {
+
   res.send('<button><a href="https://admin-one-psi.vercel.app">GO to Admin</a></button>');
 })
+
 
 // Serve static files from the 'build' directory for the root route
 app.use("/", express.static(__dirname + "/build"));
@@ -111,6 +139,8 @@ app.use(
 );
 
 
+app.use("/users", router);
+
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
@@ -119,50 +149,21 @@ app.post("/create-pdf", async (req, res) => {
   fs.writeFileSync("index.html", html);
   // const html2 = fs.readFileSync("index.html", "utf8");
 
-
-
   const puppeteerPdf = async () => {
     // Create a browser instance
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
+      args: ["--no-sandbox"],
       timeout: 10000,
     });
-    const cssStyles = [
-      "h1 {font-size: 24px;}",
-      "p {line-height: 1.5;}",
-      "#customers {font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}",
 
-      " #customers td, #customers th {border: 5px solid white;padding: 8px;margin-right : 20px;margin-bottom : 20px;line-height : 30px;}",
-
-      "#customers tr:nth-child(even){background-color: #00FFFF; }",
-
-      "#customers tr:hover {background-color: #ddd; }",
-
-      "tr {border : 1px 1px black solid;padding : 20px;margin-bottom : 20px;}",
-      "  td{margin-bottom : 20px; }",
-      " #customers th {padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white; margin : 20px;}",
-
-      "body{margin : 30px;}",
-      "table {margin-top:300px; }",
-      ".image{position : absolute;top : 80px;left : 80px;height : 50px;backgroundcolor: aqua;}",
-      ".heading{position : absolute;top : 0;left : 20%;height : 50px;backgroundcolor: aqua;}",
-      ".details{line-height : 0px;position : absolute;top : 80px;right : 100px;backgroundcolor: aqua;}",
-
-      " table{box-shadow : 3px 3px  3px solid black }",
-    ];
     // Create a new page
     const page = await browser.newPage();
-  
+
     //Get HTML content from HTML file
     const html2 = fs.readFileSync("index.html", "utf-8");
 
     await page.setContent(html2, { waitUntil: "domcontentloaded" });
-    
-    // Inject each CSS style into the page
-    for (const cssStyle of cssStyles) {
-      await page.addStyleTag({ content: cssStyle });
-    }
-  
+
     // To reflect CSS used for screens instead of print
     await page.emulateMediaType("screen");
 
@@ -177,8 +178,6 @@ app.post("/create-pdf", async (req, res) => {
   };
 
   await puppeteerPdf();
-
-
 
   // const options = { format: "Letter" };
 

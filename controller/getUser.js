@@ -26,7 +26,7 @@ const getThisUser = async (req, res) => {
     //     { phone: parameter },
     //   ],
     // });
-    console.log(founduser);
+    //console.log(founduser);
 
     if (founduser.length === 0) {
       res.status(404).json({ message: "user not found" });
