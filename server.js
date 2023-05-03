@@ -68,26 +68,26 @@ const allowedOrigins = ["https://admin-one-psi.vercel.app"];
 // const skipTheCheckingOfOrigin = true;
 
 MIDDLEWARES
-app.use(
-  cors({
-    origin: function (origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
-        // or allow all origines (skipTheCheckingOfOrigin === true) 
-        if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//         // allow requests with no origin (like mobile apps or curl requests)
+//         // or allow all origines (skipTheCheckingOfOrigin === true) 
+//         if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
 
-        // -1 means that the user's origin is not in the array allowedOrigins
-        if (allowedOrigins.indexOf(origin) === -1) {
-            var msg =
-                "The CORS policy for this site does not " +
-                "allow access from the specified Origin.";
+//         // -1 means that the user's origin is not in the array allowedOrigins
+//         if (allowedOrigins.indexOf(origin) === -1) {
+//             var msg =
+//                 "The CORS policy for this site does not " +
+//                 "allow access from the specified Origin.";
 
-            return callback(new Error(msg), false);
-        }
-        // origin is in the array allowedOrigins so authorization is granted
-        return callback(null, true);
-    },
-  })
-);
+//             return callback(new Error(msg), false);
+//         }
+//         // origin is in the array allowedOrigins so authorization is granted
+//         return callback(null, true);
+//     },
+//   })
+// );
 
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
