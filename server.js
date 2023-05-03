@@ -62,40 +62,13 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-// const allowedOrigins = ["https://admin-one-psi.vercel.app"];
-
-// Do you want to skip the checking of the origin and grant authorization?
-// const skipTheCheckingOfOrigin = true;
-
-// MIDDLEWARES
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//         // allow requests with no origin (like mobile apps or curl requests)
-//         // or allow all origines (skipTheCheckingOfOrigin === true)
-//         if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
-
-//         // -1 means that the user's origin is not in the array allowedOrigins
-//         if (allowedOrigins.indexOf(origin) === -1) {
-//             var msg =
-//                 "The CORS policy for this site does not " +
-//                 "allow access from the specified Origin.";
-
-//             return callback(new Error(msg), false);
-//         }
-//         // origin is in the array allowedOrigins so authorization is granted
-//         return callback(null, true);
-//     },
-//   })
-// );
-
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
 });
 
 app.get("/erp/myAdmin", (req, res) => {
 
-  res.send('<button><a href="https://admin-one-psi.vercel.app">GO to Admin</a></button>');
+  res.send('<button><a href="https://erp-admin.vercel.app">GO to Admin</a></button>');
 })
 
 
@@ -109,7 +82,7 @@ app.use("/admin", express.static(__dirname + "/Admin"));
 app.use(express.static("public"));
 
 
-const allowedOrigins = ["https://admin-one-psi.vercel.app"];
+const allowedOrigins = ["https://erp-admin.vercel.app"];
 
 // Do you want to skip the checking of the origin and grant authorization?
 const skipTheCheckingOfOrigin = true;
@@ -140,7 +113,6 @@ app.use(
 
 
 app.use("/users", router);
-
 
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
