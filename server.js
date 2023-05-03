@@ -8,7 +8,6 @@ const require = createRequire(import.meta.url);
 const express = require("express");
 const bodyParser = require("body-parser");
 import router from "./Routes/userRoutes.js";
-
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const StatusCodes = require("http-status-codes");
@@ -57,37 +56,14 @@ app.use(logger);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
-
+app.use(cors());
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-const allowedOrigins = ["https://admin-one-psi.vercel.app"];
+// const allowedOrigins = ["https://admin-one-psi.vercel.app"];
 
-// Do you want to skip the checking of the origin and grant authorization?
-//const skipTheCheckingOfOrigin = true;
 
-// MIDDLEWARES
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//         // allow requests with no origin (like mobile apps or curl requests)
-//         // or allow all origines (skipTheCheckingOfOrigin === true) 
-//         if (!origin || skipTheCheckingOfOrigin === true) return callback(null, true);
-
-//         // -1 means that the user's origin is not in the array allowedOrigins
-//         if (allowedOrigins.indexOf(origin) === -1) {
-//             var msg =
-//                 "The CORS policy for this site does not " +
-//                 "allow access from the specified Origin.";
-
-//             return callback(new Error(msg), false);
-//         }
-//         // origin is in the array allowedOrigins so authorization is granted
-//         return callback(null, true);
-//     },
-//   })
-// );
 
 app.get("/test", (req, res) => {
   res.send("<h1>Welcome to export readiness</h1>");
