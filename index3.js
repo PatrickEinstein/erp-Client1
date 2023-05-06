@@ -537,8 +537,8 @@ const pdfTemplate = ({
 
 }
 
-tr {
-  border : 1px 1px black solid;
+tr, table, th, td {
+  border: 1px solid black
   padding : 20px;
   margin-bottom : 20px;
 }
@@ -610,10 +610,10 @@ table{
           <table>
           
           <thead id="customers">
-            <tr>
+            <tr >
               <th>Category</th>
               <th>Score</th>
-              <th>Suggestions</th>
+              <th>Explanations</th>
               <th>Implication</th>
             </tr>
           </thead>
