@@ -117,6 +117,8 @@ app.use("/users", router);
 app.post("/create-pdf", async (req, res) => {
   const { data } = req.body;
   const html = pdfTemplate(data);
+  
+  const { firstName, lastName, email, phone, companyName, Products } = data.user;
 
   fs.writeFileSync("index.html", html);
   // const html2 = fs.readFileSync("index.html", "utf8");
@@ -162,14 +164,17 @@ app.post("/create-pdf", async (req, res) => {
       setTimeout(() => {
         try {
           const mail = [
-            // "tundeytoby@gmail.com",
             "patoctave99@gmail.com",
-            // "info@3timpex.com",
-            // "octavedev01@gmail.com",
+            "info@3timpex.com",
+            "octavedev01@gmail.com",
             data.user.email,
           ];
           const subject = "Export Readiness Report";
-          const text = "Find result attached below";
+          const text = `Hy ${firstName} ${lastName},  
+
+                        Kindly find the result of your export readiness test attached below.
+                        
+                        Thank you.`;
           const attachments = [
             {
               filename: "index.pdf",
@@ -201,8 +206,7 @@ app.post("/create-pdf", async (req, res) => {
 
   const pdfBuffer = fs.readFileSync("index.pdf");
 
-  const { firstName, lastName, email, phone, companyName, Products } =
-    data.user;
+
   if (!companyName || !email || !Products) {
     res.status(500).send({
       success: false,
