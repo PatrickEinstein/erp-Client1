@@ -178,8 +178,7 @@ app.post("/create-pdf", async (req, res) => {
           `;
           const attachments = [
             {
-              filename: "index.pdf",
-              // filename: "techsolutionstuff.pdf",
+              filename: "Export Readiness Report.pdf",
               path: __dirname + "/index.pdf",
               cid: "uniq-index.pdf",
             },
