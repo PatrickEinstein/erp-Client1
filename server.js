@@ -172,11 +172,12 @@ app.post("/create-pdf", async (req, res) => {
           const subject = "Export Readiness Report";
           const text = `
 
-          Hy ${firstName} ${lastName},  
+          <p>Hy ${firstName} ${lastName},  </p>
 
-          Kindly find the result of your export readiness test attached below.
+          <p>Kindly find the result of your export readiness test attached below.</p>
                         
-          Thank you.`;
+          <p>Thank you.</p>
+          `;
           const attachments = [
             {
               filename: "index.pdf",
