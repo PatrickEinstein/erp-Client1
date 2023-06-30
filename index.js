@@ -73,7 +73,7 @@ app.get("/erp/myAdmin", (req, res) => {
 });
 
 // Serve static files from the 'build' directory for the root route
-// app.use("/", express.static(__dirname + "/build"));
+app.use("/", express.static(__dirname + "/build"));
 
 // Serve static files from the 'admin' directory for the '/admin' route
 app.use("/admin", express.static(__dirname + "/Admin"));
