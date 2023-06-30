@@ -45,7 +45,7 @@ class BadRequestError extends CustomAPIError {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const port = process.env.PORT || 5001;
+const port = 5000 || 5001;
 app.use(express.json());
 app.use(xss());
 app.use(mongoSanitize());
@@ -242,10 +242,13 @@ app.get("/fetch-pdf", async (req, res) => {
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await connectDB(
+      "mongodb+srv://Sayrikey:1ilpmuLBvXrts3Ex@octavedb.voqsqs8.mongodb.net/EXP-READY?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     console.log("DB connection established");
 
     app.listen(port, () =>
