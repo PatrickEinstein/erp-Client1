@@ -115,6 +115,9 @@ app.post("/create-pdf", async (req, res) => {
       timeout: 10000,
     });
 
+
+    
+
     // Create a new page
     const page = await browser.newPage();
 
